@@ -18,7 +18,7 @@ RegisterNetEvent('uus_object:client:placeObject', function(model, item, metadata
                 onGround = input[1],
                 user = lib.callback.await('uus_object:server:getUserIdentifier', false),
                 item = item,
-                metadata  metadata
+                metadata = metadata
             }
             TriggerServerEvent('uus_object:server:saveObject', newData)
         end
