@@ -45,7 +45,8 @@ RegisterNetEvent('uus_object:server:saveObject', function(data)
             rot = v.rot,
             onGround = v.onGround or false,
             user = v.user,
-            item = v.item
+            item = v.item,
+            metadata = v.metadata
         }
     end
 
@@ -56,7 +57,8 @@ RegisterNetEvent('uus_object:server:saveObject', function(data)
             rot = v.rot,
             onGround = v.onGround or false,
             user = v.user,
-            item = v.item
+            item = v.item,
+            metadata = v.metadata
         }
         exports.ox_inventory:RemoveItem(source, v.item, 1)
     end
@@ -68,14 +70,15 @@ RegisterNetEvent('uus_object:server:saveObject', function(data)
             rot = %s,
             onGround = %s,
             user = '%s',
-            item = '%s'
+            item = '%s',
+            metadata = '%s'
         },
     ]]
 
     local formatted = {}
 
     for _, v in ipairs(mergedData) do
-        formatted[#formatted + 1] = Model:format(v.obj, v.coords, v.rot, v.onGround, v.user, v.item)
+        formatted[#formatted + 1] = Model:format(v.obj, v.coords, v.rot, v.onGround, v.user, v.item, v.metadata)
     end
     local ret = ('return { \n%s}'):format(table.concat(formatted, '\n'))
 
