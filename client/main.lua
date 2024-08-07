@@ -1,7 +1,7 @@
 local objpl = require 'modules.objectplacer'
 local allobj = {}
 
-RegisterNetEvent('uus_object:client:placeObject', function(model, item)
+RegisterNetEvent('uus_object:client:placeObject', function(model, item, metadata)
     local input = lib.inputDialog('TS-OBJECT', {
         { type = 'checkbox', label = 'Place Object On Ground Propperly?' },
     })
@@ -17,7 +17,8 @@ RegisterNetEvent('uus_object:client:placeObject', function(model, item)
                 rot = data.rot,
                 onGround = input[1],
                 user = lib.callback.await('uus_object:server:getUserIdentifier', false),
-                item = item
+                item = item,
+                metadata  metadata
             }
             TriggerServerEvent('uus_object:server:saveObject', newData)
         end
@@ -53,7 +54,7 @@ local function refreshObject()
                     label = 'Remove Object',
                     distance = 1.6,
                     onSelect = function()
-                        removeObject({ obj = placedObj, pos = pos, item = v.item })
+                        removeObject({ obj = placedObj, pos = pos, item = v.item, meta = v.metadata })
                     end
                 }
             })
