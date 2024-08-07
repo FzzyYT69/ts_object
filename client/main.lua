@@ -27,7 +27,7 @@ end)
 
 local function removeObject(data)
     DeleteEntity(data.obj)
-    TriggerServerEvent('uus_object:server:removeObject', data.pos, data.item)
+    TriggerServerEvent('uus_object:server:removeObject', data.pos, data.item, data.meta)
 end
 
 local function refreshObject()
